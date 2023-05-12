@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary mt-2">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Matrix Fakebook</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="{{ url_for('main.home') }}">Home</a>
+            <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+            {% if not current_user.is_authenticated %}
+            <a class="nav-link" href="{{ url_for('auth.register') }}" >Register</a>
+            <a href="{{ url_for('auth.signin') }}" class="nav-link">Sign In</a>
+            {% else %}
+            <a href="{{ url_for('social.user_page', username=current_user.username) }}" class="nav-link">My Space</a>
+            <a href="{{ url_for('social.post') }}" class="nav-link">Posts</a>
+            <a href="{{ url_for('auth.logout') }}" class="nav-link">Log out</a>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+    </nav>
